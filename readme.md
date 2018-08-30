@@ -1,5 +1,4 @@
 Rewards Token Smart Contracts
-Copyright 2017-2018, Rewards Blockchain
 =======================
 
 Usage of build scripts
