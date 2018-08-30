@@ -1,0 +1,17 @@
+#!/bin/bash
+ROOTDIR="$(cd "$(dirname "$0")" && pwd -P)"
+
+if [ -f "$ROOTDIR/networks/$1.sh" ]; then
+	tmux has-session -t $1 >>/dev/null 2>&1
+	if [ $? -eq 0 ]; then
+		echo "Using existing \"$1\" session."
+		exit 0;
+	else
+		echo "Starting \"$1\" session..."
+		tmux new -d -s "$1" "$ROOTDIR/networks/$1.sh"
+		exit 0;
+	fi
+else
+	echo "Invalid network: $1 (see $ROOTDIR/networks/ for valid networks)"
+	exit 1;
+fi
